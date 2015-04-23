@@ -27,7 +27,7 @@ public class RandomGraph {
         while(graph.numEdges() < n) {
             int from = rand.nextInt(n);
             int to = rand.nextInt(n);
-            graph.add(from, to);
+            graph.addBi(from, to);
         }
     }
 
@@ -41,7 +41,6 @@ public class RandomGraph {
         for(int i = 0; i < n; i++) {
                 if(!marked[i]) {
                     dfs(g, i, marked, 0);
-                    count++;
                 }
         }
 
@@ -71,6 +70,7 @@ public class RandomGraph {
             int i = a.next();
             if (!marked[i]) {
                 dfs(g, i, marked, sizeOfComp);
+                count++;
             }
         }
     }
@@ -80,10 +80,10 @@ public class RandomGraph {
      * @param args
      */
     public static void main(String args[]) {
-        HashGraph hash = new HashGraph(1000);
-        MatrixGraph matr = new MatrixGraph(1000);
-        RandomGraph rand = new RandomGraph(1000, hash);
-        RandomGraph rand2 = new RandomGraph(1000, matr);
+        HashGraph hash = new HashGraph(10);
+        MatrixGraph matr = new MatrixGraph(10);
+        RandomGraph rand = new RandomGraph(10, hash);
+        RandomGraph rand2 = new RandomGraph(10, matr);
 
         long startTime = System.nanoTime();
         DFSgo(hash);
@@ -103,6 +103,8 @@ public class RandomGraph {
         System.out.println("Number of components = "+ rand2.count);
         System.out.println("Size of the biggest component = " + rand2.biggestComp);
         System.out.println("TIME =" + estimatedTime2);
+
+        System.out.println(hash.toString());
 
     }
 }
