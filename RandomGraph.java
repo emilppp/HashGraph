@@ -65,28 +65,22 @@ public class RandomGraph {
         VertexIterator a = g.neighbors(v);
         while(a.hasNext()) {
             int i = a.next();
-
             if (!marked[i]) {
                 dfs(g, i, marked, sizeOfComp);
                 count++;
             }
         }
-
-
     }
 
-
-
-
     /**
-     * Testar och printar ut.
+     * Testar och printar ut tid och komponentinfo.
      * @param args
      */
     public static void main(String args[]) {
-        HashGraph hash = new HashGraph(5000);
-        MatrixGraph matr = new MatrixGraph(5000);
-        RandomGraph rand = new RandomGraph(5000, hash);
-        RandomGraph rand2 = new RandomGraph(5000, matr);
+        HashGraph hash = new HashGraph(1000);
+        MatrixGraph matr = new MatrixGraph(1000);
+        RandomGraph rand = new RandomGraph(1000, hash);
+        RandomGraph rand2 = new RandomGraph(1000, matr);
 
         long startTime = System.nanoTime();
         DFSgo(hash);
@@ -96,13 +90,13 @@ public class RandomGraph {
         System.out.println("Size of the biggest component = " + rand.biggestComp);
         System.out.println("TIME =" + estimatedTime);
 
-        startTime = System.nanoTime();
+        long startTime2 = System.nanoTime();
         DFSgo(matr);
-        estimatedTime = System.nanoTime() - startTime;
+        long estimatedTime2 = System.nanoTime() - startTime2;
         System.out.println("MATRIX");
         System.out.println("Number of components = "+ rand2.count);
-        System.out.println("Size of the biggest component = " + rand.biggestComp);
-        System.out.println("TIME =" + estimatedTime);
+        System.out.println("Size of the biggest component = " + rand2.biggestComp);
+        System.out.println("TIME =" + estimatedTime2);
 
     }
 }

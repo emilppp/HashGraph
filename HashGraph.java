@@ -85,6 +85,8 @@ public class HashGraph implements Graph {
 
     /**
      * {@inheritDoc Graph}
+     * Använder mig av en iterator för att utföra neighbors. En iterator har alla metoder redan som skulle krävas här
+     * därför kändes det optimalt.
      */
     @Override
     public VertexIterator neighbors(int v) {
@@ -272,6 +274,12 @@ public class HashGraph implements Graph {
                     + ", w = " + w + ".");
     }
 
+    /**
+     * Checks that the cost c is non-negative.
+     *
+     * @throws IllegalArgumentException
+     *             if c < 0
+     */
     private void checkNonNegativeCost(int c) {
         if (c < 0)
             throw new IllegalArgumentException("Illegal cost: c = " + c + ".");
