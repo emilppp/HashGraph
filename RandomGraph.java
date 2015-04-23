@@ -21,10 +21,10 @@ public class RandomGraph {
     }
 
     /**
-     * Generera en HashGraph med randomvärden (som dock är mindre än numVertices())
+     * Generera en HashGraph med randomvärden
      */
     private static void randomHashGraph() {
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i < n; i++) {
             int from = rand.nextInt(n);
             int to = rand.nextInt(n);
             graph.add(from, to);
