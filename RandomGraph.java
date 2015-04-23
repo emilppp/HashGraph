@@ -24,7 +24,7 @@ public class RandomGraph {
      * Generera en HashGraph med randomvärden
      */
     private static void randomHashGraph() {
-        for (int i = 0; i < n; i++) {
+        while(graph.numEdges() < n) {
             int from = rand.nextInt(n);
             int to = rand.nextInt(n);
             graph.add(from, to);
@@ -39,8 +39,12 @@ public class RandomGraph {
         marked = new boolean[n];
 
         for(int i = 0; i < n; i++) {
-            dfs(g, i, marked, 0);
+                if(!marked[i]) {
+                    dfs(g, i, marked, 0);
+                    count++;
+                }
         }
+
     }
 
     /**
@@ -58,8 +62,8 @@ public class RandomGraph {
         marked[v] = true;
         sizeOfComp++;
 
-        if (sizeOfComp > biggestComp) {
-             biggestComp = sizeOfComp;
+        if(biggestComp < sizeOfComp) {
+            biggestComp = sizeOfComp;
         }
 
         VertexIterator a = g.neighbors(v);
@@ -67,7 +71,6 @@ public class RandomGraph {
             int i = a.next();
             if (!marked[i]) {
                 dfs(g, i, marked, sizeOfComp);
-                count++;
             }
         }
     }
@@ -89,6 +92,9 @@ public class RandomGraph {
         System.out.println("Number of components = " + rand.count);
         System.out.println("Size of the biggest component = " + rand.biggestComp);
         System.out.println("TIME =" + estimatedTime);
+
+        count = 0;
+        biggestComp = 0;
 
         long startTime2 = System.nanoTime();
         DFSgo(matr);
